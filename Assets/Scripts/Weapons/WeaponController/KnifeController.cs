@@ -15,7 +15,7 @@ public class KnifeController : WeaponController
    protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedKnife = Instantiate(prefab);
+        GameObject spawnedKnife = Instantiate(weaponData.Prefab);
         spawnedKnife.transform.position = transform.position;
         //调用父类的pm属性赋值给 KnifeBehaviour父类的方法
         spawnedKnife.GetComponent<KnifeBehaviour>().DirectionChecker(pm.lsatDir);

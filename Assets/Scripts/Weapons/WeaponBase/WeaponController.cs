@@ -6,18 +6,14 @@ public class WeaponController : MonoBehaviour
 {
     
     //注释
-    [Header("Weapon Stats")] public GameObject prefab;
+    [Header("Weapon Stats")] 
+    public WeaponScriptabObject weaponData;
+    
 
-    public float damage;
-
-    public float speed;
-    //设置的冷却时间
-    public float cooldownDuration;
     
     //系统当前冷却时间
     private float currentCooldown;
-
-    public int pierce;
+    
 
     protected PlayerMovement pm;
     
@@ -26,7 +22,7 @@ public class WeaponController : MonoBehaviour
     {
         pm = FindObjectOfType<PlayerMovement>();
         //设置初始冷却时间
-        currentCooldown = cooldownDuration;
+        currentCooldown = weaponData.CooldownDuration;
     }
 
     // Update is called once per frame
@@ -47,7 +43,7 @@ public class WeaponController : MonoBehaviour
     {
         
         //刷新冷却时间
-        currentCooldown = cooldownDuration;
+        currentCooldown =weaponData.CooldownDuration;
         
     }
 }
