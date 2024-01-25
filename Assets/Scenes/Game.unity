@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 203881239}
   - component: {fileID: 203881241}
   - component: {fileID: 203881242}
+  - component: {fileID: 203881243}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -309,10 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04e6a376dc2f3f4a888219f2daa92b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
   moveDir: {x: 0, y: 0}
   lastHorizontalVector: 0
   lastVerticalVector: 0
+  characterData: {fileID: 11400000, guid: 00aa4c67da142194da6b93ebc09372fb, type: 2}
   lsatDir: {x: 0, y: 0}
 --- !u!61 &203881240
 BoxCollider2D:
@@ -371,6 +372,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aceb249a6bd2d314293b27ac1fec63c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &203881243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203881235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b18d71a2f82ca34aa6405add966f422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 11400000, guid: 00aa4c67da142194da6b93ebc09372fb, type: 2}
+  experience: 0
+  level: 1
+  experienceCap: 0
+  levelRanges:
+  - startLevel: 0
+    endLevel: 5
+    experienceCapIncrease: 100
+  - startLevel: 5
+    endLevel: 10
+    experienceCapIncrease: 200
 --- !u!1001 &234732617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1143,24 +1167,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e376efc6ff5c0d4887b5359a78d418a, type: 3}
---- !u!1 &2017091726 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7533773427792806939, guid: 3e376efc6ff5c0d4887b5359a78d418a, type: 3}
-  m_PrefabInstance: {fileID: 7533773427885954195}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2017091727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017091726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac18aaedc9eaaa048a50f685d127ee3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: f4fee4833f73f9242a8f64dc8ca4d6bf, type: 2}
 --- !u!1001 &4781928939683349660
 PrefabInstance:
   m_ObjectHideFlags: 0

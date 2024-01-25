@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7002861594577587109}
   - component: {fileID: 7533773427792806938}
   - component: {fileID: 3596915171139341620}
+  - component: {fileID: 7097527751918615100}
+  - component: {fileID: 2017091727}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
@@ -143,3 +145,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27, y: 0.22}
   m_EdgeRadius: 0
+--- !u!114 &7097527751918615100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533773427792806939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0d63812e8e6724ab4d2fdcc754cf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - name: blue gem
+    itemPrefab: {fileID: 3649404091180222807, guid: 61f7b13b8f12e1e498e38827e08d7ca2, type: 3}
+    dropRate: 50
+--- !u!114 &2017091727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533773427792806939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac18aaedc9eaaa048a50f685d127ee3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: f4fee4833f73f9242a8f64dc8ca4d6bf, type: 2}
