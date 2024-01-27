@@ -48,4 +48,14 @@ public class CharacterScriptableObject : ScriptableObject
         get => projectileSpeed;
         private set => projectileSpeed = value;
     }
+
+    [SerializeField]
+    float magent;
+    public float Magent
+    {
+        get => magent;
+        private set => magent = value;
+    }
+    
+
 }

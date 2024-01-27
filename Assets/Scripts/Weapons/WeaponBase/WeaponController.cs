@@ -23,6 +23,7 @@ public class WeaponController : MonoBehaviour
         pm = FindObjectOfType<PlayerMovement>();
         //设置初始冷却时间
         currentCooldown = weaponData.CooldownDuration;
+        // Destroy(gameObject,weaponData.);
     }
 
     // Update is called once per frame

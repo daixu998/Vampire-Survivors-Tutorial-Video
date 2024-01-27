@@ -17,3 +17,4 @@ MonoBehaviour:
   speed: 0
   cooldownDuration: 2
   pierce: 0
+  destroyAfterSeconds: 1

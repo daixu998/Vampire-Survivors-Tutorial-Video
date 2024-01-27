@@ -2,23 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class PlayerStats : MonoBehaviour
 {
-    public CharacterScriptableObject characterData;
+     CharacterScriptableObject characterData;
 
-
-    private float currentHealth;
-    private float CurrentRecovery;
-    private float currentMoveSpeed;
-    private float currentMight;
-    private float currentProjectileSpeed;
-
+    // [HideInInspector]
+    public float currentHealth;
+    [HideInInspector]
+    public float CurrentRecovery;
+    [HideInInspector]
+    public float currentMoveSpeed;
+    [HideInInspector]
+    public float currentMight;
+    [HideInInspector]
+    public float currentProjectileSpeed;
+    [HideInInspector]
+    public float currentMagnet;
 
     public int experience = 0;
     public int level;
     public int experienceCap = 100;
     // public int experienceCapIncrease;
+
+    public List<GameObject> spawonWeapons;
     
     
     [System.Serializable]
@@ -29,20 +37,43 @@ public class PlayerStats : MonoBehaviour
         public int experienceCapIncrease;
     }
 
+    //受伤害后的无敌时间
+    public float invincibilityDuration;
+    float invincibilityTime;
+    bool isInvincible;
+
+
     public List<LevelRange> levelRanges;
     private void Awake()
     {
+        characterData = CharacterSelector.GetData();
+    CharacterSelector.instance.DestroySingleton();
+
         currentHealth =characterData.MaxHealth;
         CurrentRecovery =characterData.Recovery;
         currentMoveSpeed =characterData.MoveSpeed;
         currentMight =characterData.Might;
         currentProjectileSpeed =characterData.ProjectileSpeed;
+        currentMagnet = characterData.Magent;
+
+        SpawnWeapon(characterData.StartingWeapon);
     }
     private void Start()
     {
         experienceCap = levelRanges[0].experienceCapIncrease;
     }
-    
+    void Update()
+    {
+        if (invincibilityTime >0)
+        {
+            invincibilityTime -= Time.deltaTime;
+        }else if (isInvincible)
+        {
+            isInvincible = false;
+        }
+
+        Recover();
+    }
     //经验累积
     public void IncreaseExperience(int amount)
     {
@@ -91,4 +122,66 @@ public class PlayerStats : MonoBehaviour
     //         experienceCap += experienceCapIncrease;
     //     }
     // }
+
+    public void TakeDamage(float dmg)
+    {
+        if (!isInvincible)
+        {
+           currentHealth -= dmg;
+            invincibilityTime = invincibilityDuration;  
+            isInvincible = true;
+        if (currentHealth <= 0)
+        {
+            Kill();
+        } 
+        }
+        
+
+    }
+
+    public void Kill()
+    {
+
+            Debug.Log("Killed player is dead");
+    }
+//加血方法
+    internal void RestoreHealth(int healthToRestore)
+    {
+
+        //小于最大血量就加血
+        if (currentHealth < characterData.MaxHealth)
+        {
+            currentHealth += healthToRestore;
+            //大于最大血量就保持
+            if (currentHealth> characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+        
+    }
+
+
+//每秒自动回血
+    void Recover()
+    {
+        if (currentHealth<characterData.MaxHealth)
+        {
+            currentHealth += CurrentRecovery*Time.deltaTime;
+            //数值保护
+            if (currentHealth>characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+    }
+
+    public void SpawnWeapon(GameObject weapon){
+        GameObject spawonWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        //选择武器作为初始武器
+        spawonWeapon.transform.parent = transform;
+    //加入到角色武器列中
+        spawonWeapons.Add(spawonWeapon);
+
+    }
 }

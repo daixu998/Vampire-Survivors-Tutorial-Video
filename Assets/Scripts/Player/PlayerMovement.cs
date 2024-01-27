@@ -13,13 +13,15 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public float lastVerticalVector;
 
-    public CharacterScriptableObject characterData;
+    // public CharacterScriptableObject characterData;
     public Vector2 lsatDir;
     //References
+    PlayerStats playerStats;
     Rigidbody2D rb;
 
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
         lsatDir = new Vector2(1f, 0f);
 
@@ -62,6 +64,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = new Vector2(moveDir.x * characterData.MoveSpeed, moveDir.y * characterData.MoveSpeed);
+        rb.velocity = new Vector2(moveDir.x * playerStats.currentMoveSpeed, moveDir.y * playerStats.currentMoveSpeed);
     }
 }

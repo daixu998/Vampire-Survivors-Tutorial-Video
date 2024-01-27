@@ -84,7 +84,16 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage);
             ReducePierce();
+        }else if (other.CompareTag("Prop"))
+        {
+            if (other.gameObject.TryGetComponent(out breakableProps breakable))
+            {
+                breakable.TakeDamage(currentDamage);
+                ReducePierce();
+            }
+
         }
+       
     }
 //武器攻击到次数后自毁
     void ReducePierce()

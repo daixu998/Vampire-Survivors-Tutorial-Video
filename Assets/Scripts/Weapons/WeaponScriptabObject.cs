@@ -44,4 +44,12 @@ public class WeaponScriptabObject : ScriptableObject
         get => pierce;
         private set => pierce = value;
     }
+
+    // destroyAfterSeconds
+    [SerializeField] float destroyAfterSeconds;
+    public float DestroyAfterSeconds
+    {
+        get => destroyAfterSeconds;
+        private set => destroyAfterSeconds = value;
+    }
 }

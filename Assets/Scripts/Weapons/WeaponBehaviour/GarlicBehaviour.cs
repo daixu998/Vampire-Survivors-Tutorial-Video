@@ -9,6 +9,7 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
     {
         base.Start();
         markedEnemies = new List<GameObject>();
+        
     }
 
     // Update is called once per frame
@@ -19,6 +20,15 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
             EnemyStats enemyStats = other.GetComponent<EnemyStats>();
             enemyStats.TakeDamage(currentDamage);
             markedEnemies.Add(other.gameObject);
+        }
+        else if (other.CompareTag("Prop"))
+        {
+            if (other.gameObject.TryGetComponent(out breakableProps breakable)&&!markedEnemies.Contains(other.gameObject))
+            {
+                breakable.TakeDamage(currentDamage);
+                    markedEnemies.Add(other.gameObject);
+            }
+
         }
     }
 }
