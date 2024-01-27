@@ -99,6 +99,11 @@
     <Compile Include="Assets\Scripts\Map\MapController.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\PassiveItem.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\PassiveItemScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\WingsPassiveItem.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\SpinachPassiveItem.cs" />
+    <Compile Include="Assets\Scripts\Player\InventManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

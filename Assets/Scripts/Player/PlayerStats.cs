@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float CurrentRecovery;
     [HideInInspector]
     public float currentMoveSpeed;
-    [HideInInspector]
+    // [HideInInspector]
     public float currentMight;
     [HideInInspector]
     public float currentProjectileSpeed;
@@ -26,7 +26,8 @@ public class PlayerStats : MonoBehaviour
     public int experienceCap = 100;
     // public int experienceCapIncrease;
 
-    public List<GameObject> spawonWeapons;
+        public GameObject firstPassiveItemTest,secondPassiveItemTest;
+
     
     
     [System.Serializable]
@@ -44,10 +45,19 @@ public class PlayerStats : MonoBehaviour
 
 
     public List<LevelRange> levelRanges;
+
+    InventManager inventManager;
+    public int weaponIndex;
+    public int passiveItemIndex;
+
+
     private void Awake()
     {
         characterData = CharacterSelector.GetData();
-    CharacterSelector.instance.DestroySingleton();
+        CharacterSelector.instance.DestroySingleton();
+
+        inventManager = GetComponent<InventManager>();
+
 
         currentHealth =characterData.MaxHealth;
         CurrentRecovery =characterData.Recovery;
@@ -57,6 +67,8 @@ public class PlayerStats : MonoBehaviour
         currentMagnet = characterData.Magent;
 
         SpawnWeapon(characterData.StartingWeapon);
+        SpawnPassiveItem(firstPassiveItemTest);
+        SpawnPassiveItem(secondPassiveItemTest);
     }
     private void Start()
     {
@@ -177,11 +189,28 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void SpawnWeapon(GameObject weapon){
+        if (weaponIndex >= inventManager.weaponSlots.Count-1)
+        {
+            Debug.LogError("Inventory slots already full");
+            return;
+        }
         GameObject spawonWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
         //选择武器作为初始武器
         spawonWeapon.transform.parent = transform;
-    //加入到角色武器列中
-        spawonWeapons.Add(spawonWeapon);
+        inventManager.AddWeapon(weaponIndex,spawonWeapon.GetComponent<WeaponController>());
+        weaponIndex++;
+    }
 
+    public void SpawnPassiveItem(GameObject passiveItem){
+        if (passiveItemIndex >= inventManager.passiveItemSlots.Count-1)
+        {
+            Debug.LogError("Inventory slots already full");
+            return;
+        }
+        GameObject spawonPassiveItem = Instantiate(passiveItem, transform.position, Quaternion.identity);
+        //选择武器作为初始武器
+        spawonPassiveItem.transform.parent = transform;
+        inventManager.AddPassiveItem(passiveItemIndex,spawonPassiveItem.GetComponent<PassiveItem>());
+        passiveItemIndex++;
     }
 }
