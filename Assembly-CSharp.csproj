@@ -66,11 +66,14 @@
     <Compile Include="Assets\Scripts\breakableProps.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBehaviour\GarlicBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Player\InventManager.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBase\ProjectileWeaponBehaviour.cs" />
     <Compile Include="Assets\Scripts\Pick-ups\Pickup.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponController\KnifeController.cs" />
     <Compile Include="Assets\Scripts\DropRateManager.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCollector.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBase\MeleeWeaponBehaviour.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterScriptableObject.cs" />
@@ -78,6 +81,8 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\GenerateSpriteShapes.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\SpinachPassiveItem.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\PassiveItemScriptableObject.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\ConformingSpline.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\SimpleDraw.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponController\GarlicController.cs" />
@@ -87,6 +92,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Pick-ups\ExperienceGem.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\WingsPassiveItem.cs" />
     <Compile Include="Assets\Scripts\ChunkOptimizer.cs" />
     <Compile Include="Assets\Scripts\ChunkTrigger.cs" />
     <Compile Include="Assets\Scripts\CharacterSelector.cs" />
@@ -94,16 +100,11 @@
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\Sprinkler.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\LegacyCollider.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Passive Items\PassiveItem.cs" />
     <Compile Include="Assets\Scripts\PropRandomizer.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBase\WeaponController.cs" />
     <Compile Include="Assets\Scripts\Map\MapController.cs" />
-    <Compile Include="Assets\Scripts\SceneController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\Passive Items\PassiveItem.cs" />
-    <Compile Include="Assets\Scripts\Passive Items\PassiveItemScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\Passive Items\WingsPassiveItem.cs" />
-    <Compile Include="Assets\Scripts\Passive Items\SpinachPassiveItem.cs" />
-    <Compile Include="Assets\Scripts\Player\InventManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
