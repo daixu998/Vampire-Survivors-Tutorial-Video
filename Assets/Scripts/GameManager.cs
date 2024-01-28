@@ -5,11 +5,17 @@ using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Mathematics;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public enum GameState { Playing, Paused, GameOver }
+    public enum GameState { 
+        Playing, 
+        Paused, 
+        GameOver ,
+        LevelUp
+        }
 
 
     /// <summary>
@@ -22,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public GameObject pasuseScreen;
     public GameObject gameOverScreen;
+    public GameObject levelUpScreen;
     [Header("Current Stat Displays")]
     public Text currentHealthDisplay;
     public Text currentRecoveryDisplay;
@@ -39,7 +46,15 @@ public class GameManager : MonoBehaviour
     public List<Image> chosenweaponsUI = new List<Image>(6);
     public List<Image> chosenPassiveItemsUI = new List<Image>(6);
 
+    [Header("Stopwatch")]
+    public float timeLimit;
+    float stopwatchTime;
+    public Text stopwatchDisplay;
+    public Text timeSurvivedDisplay ;
+    //游戏结束
+
     public bool isGameOver = false;
+    public bool choosingUpgrade;
 
 
 
@@ -65,6 +80,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Playing:
                 ChangeForPauseAndResume();
+                UpdateStopwatch();
                 break;
             case GameState.Paused:
                 ChangeForPauseAndResume();
@@ -77,9 +93,15 @@ public class GameManager : MonoBehaviour
                     DisplayResults();
                     Debug.Log("Game Over");
                 }
-
                 break;
-
+            case GameState.LevelUp:
+                if (!choosingUpgrade)
+                {
+                    choosingUpgrade = true;
+                    Time.timeScale = 0f;
+                    levelUpScreen.SetActive(true);
+                }
+                break;
             default:
                 Debug.LogWarning("Unhandled game state: " + currentState);
                 break;
@@ -144,17 +166,22 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+/// <summary>
+/// 开始游戏时关闭所有UI
+/// </summary> <summary>
+/// 
+/// </summary>
     void DisabelScreen()
     {
 
         pasuseScreen.SetActive(false);
         gameOverScreen.SetActive(false);
-
+        levelUpScreen.SetActive(false);
     }
 
     public void GameOver()
     {
+        timeSurvivedDisplay.text = stopwatchDisplay.text;
         ChangeState(GameState.GameOver);
     }
     //游戏结束黑屏
@@ -207,5 +234,34 @@ public class GameManager : MonoBehaviour
 
             }
         }
+    }
+
+
+    void UpdateStopwatch(){
+
+        UpdateStopwatchDisplay();
+        stopwatchTime += Time.deltaTime;
+        if (stopwatchTime >= timeLimit)
+        {
+            GameOver();
+        }
+    }
+
+    void UpdateStopwatchDisplay()
+    {
+        int minutes = Mathf.FloorToInt(stopwatchTime / 60);
+        int secends = Mathf.FloorToInt(stopwatchTime % 60);
+        stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, secends);
+    }
+
+    public void StartLevelUp(){
+        ChangeState(GameState.LevelUp);
+
+    }
+    public void EndLevelUp(){
+        choosingUpgrade = false;
+        Time.timeScale = 1f;
+        levelUpScreen.SetActive(false);
+        ChangeState(GameState.Playing);
     }
 }
