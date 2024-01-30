@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e12f7f9427959584391e498567fc54db, type: 3}
-  m_Name: WingsPassiveItem
+  m_Name: WingsPassiveItem Level2
   m_EditorClassIdentifier: 
-  multipler: 50
-  level: 1
-  nextLevelPrefab: {fileID: 8614734937562274046, guid: 0c5177a9582674649b7fd44ed7ee97eb, type: 3}
-  icon: {fileID: -2771404504902213962, guid: 25be6b52a7ecfd543af3aebc8aafd070, type: 3}
+  multipler: 75
+  level: 2
+  nextLevelPrefab: {fileID: 8614734937562274046, guid: 59fc7a8f208b9f24f8f5747eed6e4c9f, type: 3}
+  name: "\u901F\u5EA62"
+  description: "\u901F\u5EA6\u589E\u52A020%"
+  icon: {fileID: -2470146323435040397, guid: 25be6b52a7ecfd543af3aebc8aafd070, type: 3}

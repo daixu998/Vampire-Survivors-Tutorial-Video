@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -168,6 +169,11 @@ public class PlayerStats : MonoBehaviour
     public int weaponIndex;
     public int passiveItemIndex;
 
+    [Header("UI")]
+    public Image healImage;
+    public Image ExpImage;
+    public Text LevelText;
+
 
     private void Awake()
     {
@@ -199,8 +205,10 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.currentProjectilespeedDisplay.text = "project Speed: " + currentProjectileSpeed;
         GameManager.instance.currentMagnetDisplay.text = "Magnet: " + currentMagnet;
 
-
+        UpdateHealthBar();
         GameManager.instance.AssignChosenCharacterUI(characterData);
+        UpdateExp();
+        UpdateLevel();
     }
     void Update()
     {
@@ -212,19 +220,24 @@ public class PlayerStats : MonoBehaviour
         {
             isInvincible = false;
         }
-
+       
         Recover();
     }
+
+
     //经验累积
     public void IncreaseExperience(int amount)
     {
         experience += amount;
         LevelUpChecker();
+         UpdateExp();
     }
 
     //升级方法
     void LevelUpChecker()
     {
+       
+        UpdateLevel();
         if (experience >= experienceCap)//当前经验大于登记经验就升级
         {
             level++;
@@ -275,11 +288,25 @@ public class PlayerStats : MonoBehaviour
             {
                 Kill();
             }
+             UpdateHealthBar();
         }
 
 
     }
+    void UpdateHealthBar()
+    {
+        healImage.fillAmount = CurrentHealth / characterData.MaxHealth;
+    }
 
+    void UpdateExp()
+    {
+       ExpImage.fillAmount =(float)experience / experienceCap;
+    }
+
+    void UpdateLevel()
+    {
+        LevelText.text = "Lv." + level;
+    }
     public void Kill()
     {
         if (!GameManager.instance.isGameOver)

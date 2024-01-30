@@ -86,6 +86,7 @@
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\ConformingSpline.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\SimpleDraw.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponController\GarlicController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\Clipper.cs" />
     <Compile Include="Assets\Samples\2D SpriteShape\5.3.0\Sprite Shape Extras\Scripts\GeometryCollider.cs" />
     <Compile Include="Assets\Scripts\Pick-ups\HealthPotion.cs" />
@@ -104,7 +105,6 @@
     <Compile Include="Assets\Scripts\PropRandomizer.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBase\WeaponController.cs" />
     <Compile Include="Assets\Scripts\Map\MapController.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
